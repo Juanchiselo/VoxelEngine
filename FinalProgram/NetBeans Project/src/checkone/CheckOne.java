@@ -2,20 +2,23 @@
         Group name: ArrayIndexOutOfBoundsException
         Group members: Freddy Gutierrez, Jose Sandoval, Ray A. Zuniga
  */
-package VoxelEngine;
+package checkone;
 
+/**
+ *
+ * @author mrfre
+ */
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
-public class VoxelEngine
-{
+public class CheckOne {
 
     /**
      * @param args the command line arguments
      */
        
-    private FPCameraController fp = new FPCameraController(0f,0f,0f);
     private DisplayMode displayMode;
     //method: start
     //purpose: calls all neccessary methods to create window and draaw shapes
@@ -23,6 +26,7 @@ public class VoxelEngine
         try{
             createWindow();
             initGL();
+            FPCameraController fp = new FPCameraController(0f,0f,0f);            
             fp.gameLoop();
         }catch(Exception e){
             e.printStackTrace();
@@ -43,7 +47,7 @@ public class VoxelEngine
             }
         }
         Display.setDisplayMode(new DisplayMode(640, 480));
-        Display.setTitle("Cube");
+        Display.setTitle("Minecraft");
         Display.create();
     }
     
@@ -56,12 +60,17 @@ public class VoxelEngine
         GLU.gluPerspective(100.0f, (float)displayMode.getWidth()/(float)displayMode.getHeight(), 0.1f, 300.0f);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnableClientState (GL_TEXTURE_COORD_ARRAY);
         glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        
     }
     
      
     public static void main(String[] args) {
-        VoxelEngine c = new VoxelEngine();// TODO code application logic here
+        CheckOne c = new CheckOne();// TODO code application logic here
         c.start();
     }
     

@@ -1,4 +1,4 @@
-package VoxelEngine;
+package checkone;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,6 +6,10 @@ package VoxelEngine;
  * and open the template in the editor.
  */
 
+/**
+ *
+ * @author mrfre
+ */
 public class Vector3Float {
     public float x,y,z;
     public Vector3Float(int x, int y, int z){

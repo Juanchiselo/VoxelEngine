@@ -1,7 +1,16 @@
-package VoxelEngine;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package checkone;
 
-public class Block
-{
+/**
+ *
+ * @author mrfre
+ */
+public class Block {
+    
     private boolean IsActive;
     private BlockType Type;
     private float x,y,z;

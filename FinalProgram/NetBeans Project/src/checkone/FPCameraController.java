@@ -1,4 +1,4 @@
-package VoxelEngine;
+package checkone;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,6 +6,10 @@ package VoxelEngine;
  * and open the template in the editor.
  */
 
+/**
+ *
+ * @author mrfre
+ */
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -85,6 +89,7 @@ public class FPCameraController {
     
      public void gameLoop(){
         FPCameraController camera = new FPCameraController(0, 0, 0);
+        Chunk c = new Chunk(0,0,0);
         float dx = 0.0f;
         float dy = 0.0f;
         float dt = 0.0f; //length of frame
@@ -137,68 +142,11 @@ public class FPCameraController {
             camera.lookThrough();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             //you would draw your scene here.
-            render();
+            c.render();
             //draw the buffer to the screen
             Display.update();
             Display.sync(60);
             }
             Display.destroy();
-    }
-     private void render() {
-     try{
-         
-         
-         glBegin(GL_QUADS);
-
-        glColor3f(1.0f,0.0f,1.0f);
-        //Top
-        glVertex3f( 1.0f, 1.0f,-1.0f);
-        glVertex3f(-1.0f, 1.0f,-1.0f);
-        glVertex3f(-1.0f, 1.0f, 1.0f);
-        glVertex3f( 1.0f, 1.0f, 1.0f);
-
-        
-        glColor3f(0.0f,1.0f,1.0f);
-        //Front
-        glVertex3f( 1.0f, 1.0f, 1.0f);
-        glVertex3f(-1.0f, 1.0f, 1.0f);
-        glVertex3f(-1.0f,-1.0f, 1.0f);
-        glVertex3f( 1.0f,-1.0f, 1.0f);
-
-        
-        glColor3f(0.0f,0.0f,1.0f);
-        //Bottom
-        glVertex3f( 1.0f,-1.0f, 1.0f);
-        glVertex3f(-1.0f,-1.0f, 1.0f);
-        glVertex3f(-1.0f,-1.0f,-1.0f);
-        glVertex3f( 1.0f,-1.0f,-1.0f);
-        
-
-        glColor3f(1.0f,1.0f,0.0f);
-        //Back
-        glVertex3f( 1.0f,-1.0f,-1.0f);
-        glVertex3f(-1.0f,-1.0f,-1.0f);
-        glVertex3f(-1.0f, 1.0f,-1.0f);
-        glVertex3f( 1.0f, 1.0f,-1.0f);
-
-        
-        glColor3f(0.5f,0.0f,0.0f);
-        //Right
-        glVertex3f( 1.0f, 1.0f,-1.0f);
-        glVertex3f( 1.0f, 1.0f, 1.0f);
-        glVertex3f( 1.0f,-1.0f, 1.0f);
-        glVertex3f( 1.0f,-1.0f,-1.0f);
-
-        
-        glColor3f(0.0f,0.0f,0.5f);
-        //Left
-        glVertex3f(-1.0f, 1.0f, 1.0f);
-        glVertex3f(-1.0f, 1.0f,-1.0f);
-        glVertex3f(-1.0f,-1.0f,-1.0f);
-        glVertex3f(-1.0f,-1.0f, 1.0f);
-          
-         glEnd();
-     }catch(Exception e){
-     }
     }
 }
