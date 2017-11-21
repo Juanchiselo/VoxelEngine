@@ -48,6 +48,7 @@ public class Chunk {
                 CHUNK_SIZE *CHUNK_SIZE*
                         CHUNK_SIZE * 24);
         glPopMatrix();
+        glPopMatrix();
     }
 
     public void rebuildMesh(float startX, float startY, float startZ) {
