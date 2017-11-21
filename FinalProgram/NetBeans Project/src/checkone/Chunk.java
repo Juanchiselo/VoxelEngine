@@ -33,7 +33,6 @@ public class Chunk {
     
     public void render(){
         glPushMatrix();
-        glPushMatrix();
         glBindBuffer(GL_ARRAY_BUFFER,
                 VBOVertexHandle);
         glVertexPointer(3, GL_FLOAT, 0, 0L);
@@ -173,7 +172,7 @@ public class Chunk {
     
     public Chunk(int startX, int startY, int startZ) {
         try{texture = TextureLoader.getTexture("PNG",
-            ResourceLoader.getResourceAsStream("terrain.png"));
+            this.getClass().getResourceAsStream("terrain.png"));
         }
         catch(Exception e)
         {
