@@ -26,6 +26,8 @@ public class FPCameraController {
     private Vector3Float me;
     private Chunk chunk;
     
+    private Chunk chunk;
+    
     public FPCameraController(float x, float y, float z){
         //instantiate position Vector3f to the x y z params.
         position = new Vector3f(x, y, z);
