@@ -25,6 +25,8 @@ public class FPCameraController {
     private float pitch = 0.0f;
     private Vector3Float me;
     
+    private Chunk chunk;
+    
     public FPCameraController(float x, float y, float z){
         //instantiate position Vector3f to the x y z params.
         position = new Vector3f(x, y, z);
@@ -32,6 +34,7 @@ public class FPCameraController {
         lPosition.x = 0f;
         lPosition.y = 15f;
         lPosition.z = 0f;
+        chunk = new Chunk((int)x, (int)y, (int)z);
     }
     
     public void yaw(float amount){
@@ -142,7 +145,7 @@ public class FPCameraController {
             camera.lookThrough();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             //you would draw your scene here.
-            c.render();
+            chunk.render();
             //draw the buffer to the screen
             Display.update();
             Display.sync(60);
