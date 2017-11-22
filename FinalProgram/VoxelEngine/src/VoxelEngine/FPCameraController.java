@@ -13,7 +13,7 @@ public class FPCameraController
     private Vector3f lPosition = null;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    private Vector3Float me;
+//    private Vector3Float me;
     private Chunk chunk;
     
     public FPCameraController(float x, float y, float z){
@@ -81,7 +81,7 @@ public class FPCameraController
     }
     
      public void gameLoop(){
-        FPCameraController camera = new FPCameraController(0, 0, 0);
+        FPCameraController camera = new FPCameraController(-30, -85, -50);
         float dx = 0.0f;
         float dy = 0.0f;
         float dt = 0.0f; //length of frame

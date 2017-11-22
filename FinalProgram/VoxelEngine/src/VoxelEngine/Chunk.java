@@ -20,7 +20,7 @@ public class Chunk
     private Random r;
     private int VBOTextureHandle;
     private Texture texture;
-    private int smoothness = 7;
+    private int smoothness = 5;
     
     public void render()
     {
@@ -43,8 +43,7 @@ public class Chunk
         glPopMatrix();
     }
 
-    public void rebuildMesh(
-            float startX, float startY, float startZ) 
+    public void rebuildMesh(float startX, float startY, float startZ) 
     {
         // VBOs
         VBOColorHandle = glGenBuffers();
@@ -76,12 +75,14 @@ public class Chunk
                 // Calculate height.
                 //int i = (int)(StartX + x *((EndX - StartX)/xResolution));                
                 int i = (int)(startX + x *((CHUNK_SIZE - startX) / 15));
-                int j = (int)(startY + (CHUNK_SIZE - 1) * ((CHUNK_SIZE - startY) / 15));
+                int j = (int)(startY +  (CHUNK_SIZE - 1) * ((CHUNK_SIZE - startY) / 15));
                 int k = (int) (startZ + z * ((CHUNK_SIZE - startZ) / 15));
                 
-                float height =  (startY + (int) (smoothness
+                float height =  Math.abs((startY + (int) (smoothness
                         * simplexNoise.getNoise(i,j,k))
-                        * CUBE_LENGTH);                
+                        * CUBE_LENGTH));   
+                height += 25;
+                System.out.println(height);
                 
                 // Add cubes to the given height.
                 for(float y = 0; y < CHUNK_SIZE; y++)
@@ -444,6 +445,8 @@ public class Chunk
                     Block.BlockType blockType;
                     
                     // Chooses the type of block AKA Texture.
+                    
+//                    switch(0)
                     switch(r.nextInt((6 - 0) + 1) + 0)
                     {
                         case 0:
