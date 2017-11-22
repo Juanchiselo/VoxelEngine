@@ -30,7 +30,7 @@ public class Chunk {
     private int VBOColorHandle;
     private int StartX, StartY, StartZ;
     private Random r;
-//    private SimplexNoise simplex;
+    private SimplexNoise simplex;
     
     public void render(){
         glPushMatrix();
@@ -49,14 +49,9 @@ public class Chunk {
         glPopMatrix();
     }
 
-    public void rebuildMesh(float startX, float startY, float startZ) {
-        
-        
-        
-//        simplex = new SimplexNoise(5, 0.2, r.nextInt(5));
-        
-        
-        
+    public void rebuildMesh(float startX, float startY, float startZ) {                        
+        simplex = new SimplexNoise(30, 0.2, r.nextInt(9));       
+                
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
         VBOTextureHandle = glGenBuffers();
@@ -67,10 +62,22 @@ public class Chunk {
         FloatBuffer VertexTextureData = BufferUtils.createFloatBuffer((CHUNK_SIZE*CHUNK_SIZE *CHUNK_SIZE)* 6 * 12);
         for (float x = 0; x < CHUNK_SIZE; x += 1) {
             for (float z = 0; z < CHUNK_SIZE; z += 1) {
-                for(float y = 0; y < CHUNK_SIZE; y++){
-                    VertexPositionData.put(createCube((float) (startX + x* CUBE_LENGTH),(float)(y*CUBE_LENGTH+(int)(CHUNK_SIZE*.8)),(float) (startZ + z *CUBE_LENGTH)));
-                    VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int) x][(int) y][(int) z])));
-                    VertexTextureData.put(createTexCube((float) 0, (float)0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                int i=(int) (startX+x*((CHUNK_SIZE-startX)/15));
+                int j=(int) (startY+(CHUNK_SIZE-1)*((CHUNK_SIZE-startY)/15));
+                int k=(int) (startZ+z*((CHUNK_SIZE-startZ)/15));
+                float height = (startY + (float) (100*simplex.getNoise(i,j,k)) * CUBE_LENGTH); 
+                for (float y = 0; y < CHUNK_SIZE; y++) {
+                    if (y == 0) {
+                        Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Bedrock);
+                    }
+                    if (((int) y >= (int) height - 1) || y == 29) {
+                        Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Grass);
+                    }
+                    if (y <= height) {
+                        VertexPositionData.put(createCube((float) (startX + x * CUBE_LENGTH),(float) (y*CUBE_LENGTH+(int)(CHUNK_SIZE*.8)),(float) (startZ + z * CUBE_LENGTH)));
+                        VertexColorData.put(createCubeVertexCol(getCubeColor(Blocks[(int) x][(int) y][(int) z])));
+                        VertexTextureData.put(createTexCube((float) 0, (float)0, Blocks[(int)(x)][(int) (y)][(int) (z)]));
+                    }                    
                 }
             }
         }
@@ -378,11 +385,6 @@ public class Chunk {
         {
             System.out.print("MEOW!");
         }
-        
-        
-        
-        
-        
         
         r= new Random();
         Blocks = new

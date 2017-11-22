@@ -1,7 +1,14 @@
-/*
-        Group name: ArrayIndexOutOfBoundsException
-        Group members: Freddy Gutierrez, Jose Sandoval, Ray A. Zuniga
- */
+/***************************************************************
+* file: CheckOne.java
+* author: F. Gutierrez, R. Zuniga, J. Sandoval
+* class: CS 445 – Computer Graphics 
+*
+* assignment: Quarter Project
+* date last modified: 11/21/2017
+*
+* purpose: Create an original scene in Minecraft fashion
+*
+****************************************************************/ 
 package checkone;
 
 /**
@@ -13,6 +20,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
+
 public class CheckOne {
 
     /**

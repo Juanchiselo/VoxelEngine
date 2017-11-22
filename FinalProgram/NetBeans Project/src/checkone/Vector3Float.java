@@ -1,15 +1,16 @@
 package checkone;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author mrfre
- */
+/***************************************************************
+* file: Vector3Float.java
+* author: F. Gutierrez, R. Zuniga, J. Sandoval
+* class: CS 445 – Computer Graphics 
+*
+* assignment: Quarter Project
+* date last modified: 11/21/2017
+*
+* purpose: create float variables using incoming ints 
+*
+****************************************************************/ 
 public class Vector3Float {
     public float x,y,z;
     public Vector3Float(int x, int y, int z){
