@@ -6,6 +6,8 @@
 package VoxelEngine;
 
 // Imports
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -16,6 +18,8 @@ public class VoxelEngine
 {
     private FPCameraController fp;
     private DisplayMode displayMode;
+    private FloatBuffer lightPosition;
+    private FloatBuffer whiteLight;
     
     public static void main(String[] args) 
     {
@@ -86,8 +90,25 @@ public class VoxelEngine
         glEnable(GL_TEXTURE_2D);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
+        // Lighting
+        initLightArrays();
+		glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+		glLight(GL_LIGHT0, GL_SPECULAR, whiteLight);
+		glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight);
+		glLight(GL_LIGHT0, GL_AMBIENT, whiteLight);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_LIGHT0);
+        
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
     }    
+    
+    private void initLightArrays() 
+    {
+        lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
+        whiteLight = BufferUtils.createFloatBuffer(4);
+        whiteLight.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
+    }
 }

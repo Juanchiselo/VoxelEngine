@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/Chunk.java</file>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/SimplexNoise.java</file>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/SimplexNoise_octave.java</file>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/VoxelEngine.java</file>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/FPCameraController.java</file>
-            <file>file:/Users/SangreAzul37/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/Block.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/Block.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/Chunk.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/SimplexNoise_octave.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/terrain.png</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/FPCameraController.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/SimplexNoise.java</file>
+            <file>file:/C:/Users/juanc/Documents/GitHub/VoxelEngine/FinalProgram/VoxelEngine/src/VoxelEngine/VoxelEngine.java</file>
         </group>
     </open-files>
 </project-private>
