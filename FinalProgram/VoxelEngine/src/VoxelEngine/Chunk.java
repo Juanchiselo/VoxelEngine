@@ -7,7 +7,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
 
 public class Chunk
 {
@@ -49,9 +48,11 @@ public class Chunk
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
         VBOTextureHandle= glGenBuffers();
+        Random rand = new Random();
+        int block = 0;
         
         // Simplex Noise
-        SimplexNoise simplexNoise = new SimplexNoise(30, 0.3f, r.nextInt());
+        SimplexNoise simplexNoise = new SimplexNoise(30, 0.3f, r.nextInt(7));
         
         // Buffers
         FloatBuffer VertexPositionData =
@@ -82,11 +83,31 @@ public class Chunk
                         * simplexNoise.getNoise(i,j,k))
                         * CUBE_LENGTH));   
                 height += 25;
-                System.out.println(height);
                 
                 // Add cubes to the given height.
                 for(float y = 0; y < CHUNK_SIZE; y++)
                 {
+                     if (y == 0) {
+                        Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Bedrock);
+                     }
+                    if (((int) y >= (int) height - 1) || y == 29)  {
+//                        block = rand.nextInt(3);
+//                        switch(block){
+//                            case 0:
+//                                Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Grass);
+//                                return;
+//                            case 1:
+//                                Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Sand);
+//                                return;
+//                            case 2:
+//                                Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Water);
+//                                return;
+//                            default:
+//                                return;
+////
+//                       }    
+Blocks[(int) x][(int) y][(int) z] = new Block(Block.BlockType.BlockType_Grass);
+                    }
                     if (y <= height) 
                     {
                         VertexPositionData.put(createCube((float) (startX + x * CUBE_LENGTH),

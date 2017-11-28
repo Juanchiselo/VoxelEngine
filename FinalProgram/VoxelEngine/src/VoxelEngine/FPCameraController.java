@@ -1,5 +1,7 @@
 package VoxelEngine;
 
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -39,26 +41,38 @@ public class FPCameraController
     public void walkForward(float distance){
         float xOffset = distance * (float)Math.sin(Math.toRadians(yaw));
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw));
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
         position.x -= xOffset;
-        position.z += zOffset;
+        position.z += zOffset;        
     }
     public void walkBackwards(float distance){
         float xOffset = distance * (float)Math.sin(Math.toRadians(yaw));
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw));
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
         position.x += xOffset;
-        position.z -= zOffset;
+        position.z -= zOffset;        
     }
     public void strafeLeft(float distance){
         float xOffset = distance * (float)Math.sin(Math.toRadians(yaw-90));
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw-90));
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);        
         position.x -= xOffset;
-        position.z += zOffset;
+        position.z += zOffset;        
     }
     public void strafeRight(float distance){
         float xOffset = distance * (float)Math.sin(Math.toRadians(yaw+90));
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw+90));
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=xOffset).put(lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);        
         position.x -= xOffset;
-        position.z += zOffset;
+        position.z += zOffset;        
     }
     //moves camera up
     public void moveUp(float distance)
@@ -72,12 +86,17 @@ public class FPCameraController
     //translates and rotate the matrix so that it looks through the camera
 //this does basically what gluLookAt() does
     public void lookThrough(){
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x).put(lPosition.y).put(lPosition.z).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+        
         //roatate the pitch around the X axis
         glRotatef(pitch, 1.0f, 0.0f, 0.0f);
         //roatate the yaw around the Y axis
         glRotatef(yaw, 0.0f, 1.0f, 0.0f);
         //translate to the position vector's location
         glTranslatef(position.x, position.y, position.z);
+        
     }
     
      public void gameLoop(){

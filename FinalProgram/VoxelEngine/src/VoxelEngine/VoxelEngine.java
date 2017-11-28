@@ -6,7 +6,8 @@
 package VoxelEngine;
 
 // Imports
-import org.lwjgl.input.Keyboard;
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
@@ -16,6 +17,8 @@ public class VoxelEngine
 {
     private FPCameraController fp;
     private DisplayMode displayMode;
+    private FloatBuffer lightPosition;
+    private FloatBuffer whiteLight;
     
     public static void main(String[] args) 
     {
@@ -65,11 +68,19 @@ public class VoxelEngine
         Display.create();
     }
     
+    private void initLightArrays() {
+        lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
+        whiteLight = BufferUtils.createFloatBuffer(4);
+        whiteLight.put(1.0f).put(1.0f).put(1.0f).put(0.0f).flip();
+    }
+    
+    
     //method: initGL
     //purpose: uses methods in gl class for window
     private void initGL() 
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.8f, 0.95f, 0.0f);
         
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
@@ -89,5 +100,14 @@ public class VoxelEngine
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
         glEnable(GL_DEPTH_TEST);
+        
+        //lighting
+        initLightArrays();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition); //sets our light’s position
+        glLight(GL_LIGHT0, GL_SPECULAR, whiteLight);//sets our specular light
+        glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight);//sets our diffuse light
+        glLight(GL_LIGHT0, GL_AMBIENT, whiteLight);//sets our ambient light
+        glEnable(GL_LIGHTING);//enables our lighting
+        glEnable(GL_LIGHT0);//enables light0
     }    
 }
