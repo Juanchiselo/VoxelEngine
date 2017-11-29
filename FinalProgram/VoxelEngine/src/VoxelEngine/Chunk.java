@@ -91,7 +91,7 @@ public class Chunk
                 {
                     //System.out.println("Height: " + height + " - y: " + y);
                     // Places the bedrock at the bottom layer.
-                    if(y < 3)
+                    if(y == 0)
                     {
                         Blocks[(int)x][(int)y][(int)z] 
                                 = new Block(Block.BlockType.BlockType_Bedrock);
@@ -124,9 +124,16 @@ public class Chunk
                                 = new Block(Block.BlockType.BlockType_Grass);
                     }
                     
+                    if(y > 24 && y < 27)
+                    {
+                        Blocks[(int)x][(int)y][(int)z] = null;
+                        Blocks[(int)x][(int)y][(int)z] 
+                                = new Block(Block.BlockType.BlockType_Sand);
+                    }
+                    int waterNoise = r.nextInt((4 + 1 + 1) - 1);
                     if(y > 24 && y < 27 
-                            && x > WATER_BOUND && x < CHUNK_SIZE - WATER_BOUND
-                            && z > WATER_BOUND && z < CHUNK_SIZE - WATER_BOUND)
+                            && x > WATER_BOUND - waterNoise && x < CHUNK_SIZE - WATER_BOUND - waterNoise
+                            && z > WATER_BOUND - waterNoise  && z < CHUNK_SIZE - WATER_BOUND - waterNoise)
                     {
                         Blocks[(int)x][(int)y][(int)z] 
                                 = new Block(Block.BlockType.BlockType_Water);
@@ -286,14 +293,14 @@ public class Chunk
                         x + offset * 2, y + offset * 1,
                         x + offset * 3, y + offset * 1,
                         // LEFT QUAD
-                        x + offset * 3, y + offset * 0,
-                        x + offset * 4, y + offset * 0,
-                        x + offset * 4, y + offset * 1,
+                        x + offset * 3, y + offset * 2,
+                        x + offset * 2, y + offset * 2,
+                        x + offset * 2, y + offset * 1,
                         x + offset * 3, y + offset * 1,
                         // RIGHT QUAD
-                        x + offset * 3, y + offset * 0,
-                        x + offset * 4, y + offset * 0,
-                        x + offset * 4, y + offset * 1,
+                        x + offset * 3, y + offset * 2,
+                        x + offset * 2, y + offset * 2,
+                        x + offset * 2, y + offset * 1,
                         x + offset * 3, y + offset * 1 };
         case 2: // Water
                 return new float[] {

@@ -73,7 +73,7 @@ public class VoxelEngine
     //purpose: uses methods in gl class for window
     private void initGL() 
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.8f, 0.95f, 0.0f);
         
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
