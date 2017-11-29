@@ -13,6 +13,7 @@ public class Chunk
 {
     static final int CHUNK_SIZE = 30;
     static final int CUBE_LENGTH = 2;
+    static final int WATER_BOUND = 5;
     private Block[][][] Blocks;
     private int VBOVertexHandle;
     private int VBOColorHandle;
@@ -20,7 +21,7 @@ public class Chunk
     private Random r;
     private int VBOTextureHandle;
     private Texture texture;
-    private int smoothness = 20;
+    private int smoothness = 15;
     
     public void render()
     {
@@ -111,21 +112,22 @@ public class Chunk
                         }
                     }
                     // Dirt
-                    else if(y < height)
-                    {                        
+                    else if(y < height && y != CHUNK_SIZE - 1)
+                    {                 
                         Blocks[(int)x][(int)y][(int)z] 
                                     = new Block(Block.BlockType.BlockType_Dirt);
                     }
                     // Grass
-                    else if(y == height)
+                    else
                     {
                         Blocks[(int)x][(int)y][(int)z] 
                                 = new Block(Block.BlockType.BlockType_Grass);
                     }
                     
-                    if(y > 24 && y < 27)
+                    if(y > 24 && y < 27 
+                            && x > WATER_BOUND && x < CHUNK_SIZE - WATER_BOUND
+                            && z > WATER_BOUND && z < CHUNK_SIZE - WATER_BOUND)
                     {
-                        //System.out.println("Water");
                         Blocks[(int)x][(int)y][(int)z] 
                                 = new Block(Block.BlockType.BlockType_Water);
                     }
